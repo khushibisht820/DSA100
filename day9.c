@@ -3,7 +3,6 @@
 int main() {
     int p, q;
 
-    // First array
     printf("Enter size of first array: ");
     scanf("%d", &p);
 
@@ -13,7 +12,6 @@ int main() {
         scanf("%d", &a[i]);
     }
 
-    // Second array
     printf("Enter size of second array: ");
     scanf("%d", &q);
 
@@ -23,7 +21,6 @@ int main() {
         scanf("%d", &b[i]);
     }
 
-    // Merge logic
     int i = 0, j = 0;
 
     printf("Merged array:\n");
@@ -38,7 +35,6 @@ int main() {
         }
     }
 
-    // Remaining elements
     while (i < p) {
         printf("%d ", a[i]);
         i++;
