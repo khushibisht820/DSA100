@@ -1,54 +1,44 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
-// Safe compare function for qsort
-int compare(const void *a, const void *b) {
-    int x = *(const int *)a;
-    int y = *(const int *)b;
+// compare function for qsort
+int compare(const void *a, const void *b)
+{
+    int x = *(int *)a;
+    int y = *(int *)b;
 
-    if (x < y) return -1;
-    if (x > y) return 1;
-    return 0;
+    return x - y;   // ascending order
 }
 
-int main() {
+int main()
+{
     int n;
+
+    printf("Enter size: ");
     scanf("%d", &n);
 
-    // Edge case: need at least two elements
-    if (n < 2) {
-        printf("Array must have at least two elements");
+    if(n <= 0)
+    {
+        printf("Invalid size\n");
         return 0;
     }
 
-    int arr[n];
-    for (int i = 0; i < n; i++) {
+    int arr[1000];   // fixed size to avoid VLA problem
+
+    printf("Enter elements:\n");
+    for(int i = 0; i < n; i++)
+    {
         scanf("%d", &arr[i]);
     }
 
-    // Sort the array
+    // sorting array
     qsort(arr, n, sizeof(int), compare);
 
-    int left = 0, right = n - 1;
-    int minSum = abs(arr[left] + arr[right]);
-    int x = arr[left], y = arr[right];
-
-    while (left < right) {
-        int sum = arr[left] + arr[right];
-
-        if (abs(sum) < minSum) {
-            minSum = abs(sum);
-            x = arr[left];
-            y = arr[right];
-        }
-
-        if (sum < 0)
-            left++;
-        else
-            right--;
+    printf("Sorted array:\n");
+    for(int i = 0; i < n; i++)
+    {
+        printf("%d ", arr[i]);
     }
 
-    printf("%d %d", x, y);
     return 0;
 }
